@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="577.0" prefWidth="940.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FirstClientFormController">
+   <children>
+      <ImageView fitHeight="577.0" fitWidth="512.0" pickOnBounds="true">
+         <image>
+            <Image url="@assets/chat.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="568.0" layoutY="118.0" prefHeight="89.0" prefWidth="222.0" text="Log In">
+         <font>
+            <Font name="System Bold" size="37.0" />
+         </font>
+      </Label>
+      <JFXTextField labelFloat="true" layoutX="568.0" layoutY="321.0" prefHeight="27.0" prefWidth="293.0" promptText="User Name" />
+      <JFXButton buttonType="RAISED" layoutX="568.0" layoutY="459.0" prefHeight="31.0" prefWidth="293.0" style="-fx-background-color: B8AA90;" text="Log In">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></JFXButton>
+   </children>
+</AnchorPane>
