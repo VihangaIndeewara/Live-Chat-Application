@@ -21,8 +21,8 @@
             <Font name="System Bold" size="37.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtUserName" labelFloat="true" layoutX="568.0" layoutY="321.0" prefHeight="27.0" prefWidth="293.0" promptText="User Name" />
-      <JFXButton buttonType="RAISED" layoutX="568.0" layoutY="459.0" onAction="#btnLogInOnAction" prefHeight="31.0" prefWidth="293.0" style="-fx-background-color: B8AA90;" text="Log In">
+      <JFXTextField labelFloat="true" layoutX="568.0" layoutY="321.0" prefHeight="27.0" prefWidth="293.0" promptText="User Name" />
+      <JFXButton buttonType="RAISED" layoutX="568.0" layoutY="459.0" prefHeight="31.0" prefWidth="293.0" style="-fx-background-color: B8AA90;" text="Log In">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
