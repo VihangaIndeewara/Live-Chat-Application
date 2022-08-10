@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="577.0" prefWidth="940.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FirstClientDashBoardController">
+<AnchorPane prefHeight="577.0" prefWidth="940.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FirstClientDashBoardController">
    <children>
       <ImageView fitHeight="577.0" fitWidth="940.0" layoutY="-2.0" pickOnBounds="true">
          <image>
-            <Image url="@assets/background.png" />
+            <Image url="@../assets/background.png" />
          </image>
       </ImageView>
       <JFXButton buttonType="RAISED" layoutX="734.0" layoutY="491.0" onAction="#btnSendOnAction" prefHeight="45.0" prefWidth="138.0" style="-fx-background-color: #16A085;" text="Send">

@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="577.0" prefWidth="940.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FirstClientFormController">
+<AnchorPane fx:id="LoginContext" prefHeight="577.0" prefWidth="940.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FirstClientFormController">
    <children>
       <ImageView fitHeight="577.0" fitWidth="512.0" pickOnBounds="true">
          <image>
-            <Image url="@assets/chat.jpg" />
+            <Image url="@../assets/chat.jpg" />
          </image>
       </ImageView>
       <Label layoutX="568.0" layoutY="118.0" prefHeight="89.0" prefWidth="222.0" text="Log In">
@@ -29,5 +29,10 @@
          <font>
             <Font name="System Bold" size="16.0" />
          </font></JFXButton>
+      <Label layoutX="26.0" layoutY="501.0" prefHeight="66.0" prefWidth="222.0" text="Play Tech" textFill="#c3b8b8">
+         <font>
+            <Font name="System Bold" size="37.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
