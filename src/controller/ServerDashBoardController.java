@@ -28,14 +28,14 @@ public class ServerDashBoardController {
                 serverSocket=new ServerSocket(PORT);
                 txtArea.appendText("Server Started!!!");
                 localSocket=serverSocket.accept();
-                txtArea.appendText("Client Connected!!!");
+                txtArea.appendText("\nClient Connected!!!");
 
                 dataInputStream=new DataInputStream(localSocket.getInputStream());
                 dataOutputStream=new DataOutputStream(localSocket.getOutputStream());
 
                 while (!message.equals("bye")){
                     message=dataInputStream.readUTF();
-                    txtArea.appendText(message);
+                    txtArea.appendText("\n"+message);
                 }
 
 
