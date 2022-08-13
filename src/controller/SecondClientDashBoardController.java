@@ -7,16 +7,14 @@ import javafx.scene.control.TextField;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.ServerSocket;
 import java.net.Socket;
 
-public class ServerDashBoardController {
+public class SecondClientDashBoardController {
+    final int PORT=3088;
     public TextArea txtArea;
     public TextField txtField;
 
-    final int PORT=3088;
-    ServerSocket serverSocket;
-    Socket localSocket;
+    Socket socket;
     DataInputStream dataInputStream;
     DataOutputStream dataOutputStream;
 
@@ -25,21 +23,13 @@ public class ServerDashBoardController {
     public void initialize(){
         new Thread(() -> {
             try {
-                serverSocket=new ServerSocket(PORT);
-                txtArea.appendText("Server Started!!!");
-
-                localSocket=serverSocket.accept();
-                txtArea.appendText("\n New Client Connected!!!");
-
-                ClientHandler clientHandler=new ClientHandler(localSocket);
-
-
-                dataInputStream=new DataInputStream(localSocket.getInputStream());
-                dataOutputStream=new DataOutputStream(localSocket.getOutputStream());
+                socket=new Socket("localhost",PORT);
+                dataInputStream=new DataInputStream(socket.getInputStream());
+                dataOutputStream=new DataOutputStream(socket.getOutputStream());
 
                 while (!message.equals("bye")){
                     message=dataInputStream.readUTF();
-                    txtArea.appendText("\n\n"+message);
+                    txtArea.appendText("\n"+message);
                 }
 
 
@@ -48,6 +38,7 @@ public class ServerDashBoardController {
             }
         }).start();
     }
+
 
     public void btnSendOnAction(ActionEvent actionEvent) throws IOException {
         dataOutputStream.writeUTF(txtField.getText().trim());

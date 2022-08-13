@@ -1,8 +1,10 @@
 package controller;
 
+import com.sun.security.ntlm.Client;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -46,5 +48,8 @@ public class FirstClientDashBoardController {
         dataOutputStream.writeUTF(txtField.getText().trim());
         dataOutputStream.flush();
         txtField.clear();
+    }
+
+    public void photoOnMouseClickedOnAction(MouseEvent mouseEvent) {
     }
 }

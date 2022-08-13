@@ -16,7 +16,7 @@ public class SecondClientFormController {
 
     public void btnLogInOnAction(ActionEvent actionEvent) throws IOException {
         if (txtUserName.getText().length()>0){
-            setUi("../view/FirstClientDashBoard");
+            setUi("../view/SecondClientDashBoard");
         }else {
             new Alert(Alert.AlertType.WARNING,"Please Enter User Name").show();
         }
