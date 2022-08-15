@@ -16,7 +16,7 @@ public class ServerDashBoardController {
 
     final int PORT=3088;
     ServerSocket serverSocket;
-    Socket localSocket;
+    Socket socket;
     DataInputStream dataInputStream;
     DataOutputStream dataOutputStream;
 
@@ -28,14 +28,14 @@ public class ServerDashBoardController {
                 serverSocket=new ServerSocket(PORT);
                 txtArea.appendText("Server Started!!!");
 
-                localSocket=serverSocket.accept();
+                socket=serverSocket.accept();
                 txtArea.appendText("\n New Client Connected!!!");
 
-                ClientHandler clientHandler=new ClientHandler(localSocket);
+                ClientHandler clientHandler=new ClientHandler(socket);
 
 
-                dataInputStream=new DataInputStream(localSocket.getInputStream());
-                dataOutputStream=new DataOutputStream(localSocket.getOutputStream());
+                dataInputStream=new DataInputStream(socket.getInputStream());
+                dataOutputStream=new DataOutputStream(socket.getOutputStream());
 
                 while (!message.equals("bye")){
                     message=dataInputStream.readUTF();
@@ -53,5 +53,17 @@ public class ServerDashBoardController {
         dataOutputStream.writeUTF(txtField.getText().trim());
         dataOutputStream.flush();
         txtField.clear();
+    }
+
+    public  void  clear(){
+
+            try {
+                if (serverSocket!=null) {
+                    serverSocket.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
     }
 }

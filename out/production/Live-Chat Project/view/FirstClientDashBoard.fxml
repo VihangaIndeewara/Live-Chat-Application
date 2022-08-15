@@ -32,5 +32,10 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
+      <ImageView fitHeight="38.0" fitWidth="47.0" layoutX="673.0" layoutY="495.0" onMouseClicked="#photoOnMouseClickedOnAction" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/photo.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
