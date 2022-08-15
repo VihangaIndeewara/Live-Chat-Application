@@ -11,24 +11,28 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 public class ClientDashBoardController extends Thread {
-    public TextArea txtArea;
     public TextField txtField;
     public FileChooser chooser;
     public File path;
+    public ImageView imgSendImages;
     public Label lblName;
     public Pane emojiPane;
+    public VBox vBox;
 
     Socket socket;
     BufferedReader bufferedReader;
@@ -56,16 +60,17 @@ public class ClientDashBoardController extends Thread {
         printWriter.println(lblName.getText()+" : " + message);
         printWriter.flush();
         txtField.clear();
-        if (message.equalsIgnoreCase("exit")) {
+        emojiPane.setVisible(false);
+        if (message.equalsIgnoreCase("bye")) {
             Stage stage = (Stage) txtField.getScene().getWindow();
             stage.close();
         }
 
     }
 
-    public void run(){
+    public void run() {
         try {
-            while (true){
+            while (true) {
                 String massage = bufferedReader.readLine();
                 String[] tokens = massage.split(" ");
                 String command = tokens[0];
@@ -103,6 +108,7 @@ public class ClientDashBoardController extends Thread {
                     hBox.setAlignment(Pos.BOTTOM_RIGHT);
 
                     if (!command.equalsIgnoreCase(lblName.getText())) {
+                        vBox.setAlignment(Pos.TOP_LEFT);
                         hBox.setAlignment(Pos.CENTER_LEFT);
 
                         Text text1 = new Text("  " + command + " :");
@@ -115,7 +121,7 @@ public class ClientDashBoardController extends Thread {
                         hBox.getChildren().add(text1);
                     }
 
-
+                    Platform.runLater(() -> vBox.getChildren().addAll(hBox));
 
                 } else {
                     TextFlow tempTextFlow = new TextFlow();
@@ -133,7 +139,7 @@ public class ClientDashBoardController extends Thread {
                     HBox hBox = new HBox(12);
 
                     if (!command.equalsIgnoreCase(lblName.getText() + ":")) {
-
+                        vBox.setAlignment(Pos.TOP_LEFT);
                         hBox.setAlignment(Pos.CENTER_LEFT);
                         hBox.getChildren().add(textFlow);
                     } else {
@@ -142,10 +148,10 @@ public class ClientDashBoardController extends Thread {
                         hBox.setAlignment(Pos.BOTTOM_RIGHT);
                         hBox.getChildren().add(textFlow1);
                     }
-
+                    Platform.runLater(() -> vBox.getChildren().addAll(hBox));
                 }
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -160,29 +166,6 @@ public class ClientDashBoardController extends Thread {
         printWriter.flush();
     }
 
-    public void smileOnMouseClickedOnAction(MouseEvent mouseEvent) {
-        txtField.appendText("U+1f600");
-    }
-
-    public void cryingOnMouseClickedOnAction(MouseEvent mouseEvent) {
-        txtField.appendText("U+1F602");
-    }
-
-    public void smile2photoOnMouseClickedOnAction(MouseEvent mouseEvent) {
-        txtField.appendText("U+1F609");
-    }
-
-    public void starOnMouseClickedOnAction(MouseEvent mouseEvent) {
-        txtField.appendText("U+1F929");
-    }
-
-    public void tiredOnMouseClickedOnAction(MouseEvent mouseEvent) {
-        txtField.appendText("U+1F975");
-    }
-
-    public void sunglassOnMouseClickedOnAction(MouseEvent mouseEvent) {
-        txtField.appendText("U+1F60E");
-    }
 
     public void emojiOnMouseClickedOnAction(MouseEvent mouseEvent) {
         if (!emojiPane.isVisible()){
@@ -190,5 +173,49 @@ public class ClientDashBoardController extends Thread {
         }else {
             emojiPane.setVisible(false);
         }
+    }
+
+    public void smileOnMouseClickedOnAction(MouseEvent mouseEvent) {
+        txtField.appendText("\uD83D\uDE03");
+    }
+
+    public void cryingOnMouseClickedOnAction(MouseEvent mouseEvent) {
+        txtField.appendText("\uD83D\uDE02");
+    }
+
+    public void smile2photoOnMouseClickedOnAction(MouseEvent mouseEvent) {
+        txtField.appendText("\uD83D\uDE09");
+    }
+
+    public void smile3photoOnMouseClickedOnAction(MouseEvent mouseEvent) {
+        txtField.appendText("\uD83D\uDE06");
+    }
+
+    public void smile4OnMouseClickedOnAction(MouseEvent mouseEvent) {
+        txtField.appendText("\uD83D\uDE07");
+    }
+
+    public void hateOnMouseClickedOnAction(MouseEvent mouseEvent) {
+        txtField.appendText("\uD83D\uDE08");
+    }
+
+    public void neutralOnMouseClickedOnAction(MouseEvent mouseEvent) {
+        txtField.appendText("\uD83D\uDE10");
+    }
+
+    public void smile5OnMouseClickedOnAction(MouseEvent mouseEvent) {
+        txtField.appendText("\uD83D\uDE12");
+    }
+
+    public void smile6OnMouseClickedOnAction(MouseEvent mouseEvent) {
+        txtField.appendText("\uD83D\uDE13");
+    }
+
+    public void sadOnMouseClickedOnAction(MouseEvent mouseEvent) {
+        txtField.appendText("\uD83D\uDE14");
+    }
+
+    public void kissOnMouseClickedOnAction(MouseEvent mouseEvent) {
+        txtField.appendText("\uD83D\uDE18");
     }
 }
