@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
@@ -27,6 +28,7 @@ public class ClientDashBoardController extends Thread {
     public FileChooser chooser;
     public File path;
     public Label lblName;
+    public Pane emojiPane;
 
     Socket socket;
     BufferedReader bufferedReader;
@@ -34,6 +36,7 @@ public class ClientDashBoardController extends Thread {
 
 
     public void initialize(){
+        emojiPane.setVisible(false);
         String userName = ClientLoginFormController.userName;
         lblName.setText(userName);
 
@@ -155,5 +158,37 @@ public class ClientDashBoardController extends Thread {
         this.path = chooser.showOpenDialog(stage);
         printWriter.println(lblName.getText() + " " + "img" + path.getPath());
         printWriter.flush();
+    }
+
+    public void smileOnMouseClickedOnAction(MouseEvent mouseEvent) {
+        txtField.appendText("U+1f600");
+    }
+
+    public void cryingOnMouseClickedOnAction(MouseEvent mouseEvent) {
+        txtField.appendText("U+1F602");
+    }
+
+    public void smile2photoOnMouseClickedOnAction(MouseEvent mouseEvent) {
+        txtField.appendText("U+1F609");
+    }
+
+    public void starOnMouseClickedOnAction(MouseEvent mouseEvent) {
+        txtField.appendText("U+1F929");
+    }
+
+    public void tiredOnMouseClickedOnAction(MouseEvent mouseEvent) {
+        txtField.appendText("U+1F975");
+    }
+
+    public void sunglassOnMouseClickedOnAction(MouseEvent mouseEvent) {
+        txtField.appendText("U+1F60E");
+    }
+
+    public void emojiOnMouseClickedOnAction(MouseEvent mouseEvent) {
+        if (!emojiPane.isVisible()){
+            emojiPane.setVisible(true);
+        }else {
+            emojiPane.setVisible(false);
+        }
     }
 }

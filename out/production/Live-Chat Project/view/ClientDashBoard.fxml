@@ -8,6 +8,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="577.0" prefWidth="940.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ClientDashBoardController">
@@ -17,6 +18,58 @@
             <Image url="@../assets/background.png" />
          </image>
       </ImageView>
+      <Pane fx:id="emojiPane" layoutX="79.0" layoutY="418.0" prefHeight="45.0" prefWidth="786.0" style="-fx-background-color: #87B4D3;">
+         <children>
+            <ImageView fitHeight="38.0" fitWidth="47.0" layoutX="14.0" layoutY="4.0" onMouseClicked="#smileOnMouseClickedOnAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/smile.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fitHeight="38.0" fitWidth="47.0" layoutX="69.0" layoutY="4.0" onMouseClicked="#cryingOnMouseClickedOnAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/crying.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fitHeight="38.0" fitWidth="47.0" layoutX="124.0" layoutY="4.0" onMouseClicked="#smile2photoOnMouseClickedOnAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/smile2.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fitHeight="38.0" fitWidth="47.0" layoutX="182.0" layoutY="4.0" onMouseClicked="#starOnMouseClickedOnAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/star.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fitHeight="38.0" fitWidth="47.0" layoutX="244.0" layoutY="4.0" onMouseClicked="#tiredOnMouseClickedOnAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/tired.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fitHeight="38.0" fitWidth="47.0" layoutX="306.0" layoutY="4.0" onMouseClicked="#sunglassOnMouseClickedOnAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/sunglass.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </Pane>
       <JFXButton buttonType="RAISED" layoutX="734.0" layoutY="491.0" onAction="#btnSendOnAction" prefHeight="45.0" prefWidth="138.0" style="-fx-background-color: #16A085;" text="Send">
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -25,7 +78,7 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </JFXButton>
-      <TextArea fx:id="txtArea" layoutX="79.0" layoutY="80.0" prefHeight="354.0" prefWidth="786.0" />
+      <TextArea fx:id="txtArea" editable="false" layoutX="79.0" layoutY="80.0" prefHeight="334.0" prefWidth="786.0" />
       <TextField fx:id="txtField" layoutX="79.0" layoutY="491.0" prefHeight="45.0" prefWidth="641.0" />
       <Label fx:id="lblName" layoutX="38.0" layoutY="26.0" prefHeight="29.0" prefWidth="248.0" text="Name">
          <font>
@@ -35,6 +88,14 @@
       <ImageView fitHeight="38.0" fitWidth="47.0" layoutX="673.0" layoutY="495.0" onMouseClicked="#photoOnMouseClickedOnAction" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/photo.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fitHeight="38.0" fitWidth="47.0" layoutX="624.0" layoutY="495.0" onMouseClicked="#emojiOnMouseClickedOnAction" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/smile.png" />
          </image>
          <cursor>
             <Cursor fx:constant="HAND" />
