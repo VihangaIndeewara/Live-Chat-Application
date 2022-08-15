@@ -9,6 +9,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class ServerDashBoardController {
     public TextArea txtArea;
@@ -20,50 +21,20 @@ public class ServerDashBoardController {
     DataInputStream dataInputStream;
     DataOutputStream dataOutputStream;
 
+    private static ArrayList<ClientHandler> clientHandlers = new ArrayList<>();
     String message= "";
 
-    public void initialize(){
-        new Thread(() -> {
-            try {
-                serverSocket=new ServerSocket(PORT);
-                txtArea.appendText("Server Started!!!");
+    public void initialize() throws IOException {
+        serverSocket = new ServerSocket(PORT);
+        txtArea.appendText("Server Started!!!");
 
-                socket=serverSocket.accept();
-                txtArea.appendText("\n New Client Connected!!!");
+        while (true) {
+            socket = serverSocket.accept();
+            txtArea.appendText("\n New Client Connected!!!");
 
-                ClientHandler clientHandler=new ClientHandler(socket);
-
-
-                dataInputStream=new DataInputStream(socket.getInputStream());
-                dataOutputStream=new DataOutputStream(socket.getOutputStream());
-
-                while (!message.equals("bye")){
-                    message=dataInputStream.readUTF();
-                    txtArea.appendText("\n\n"+message);
-                }
-
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }).start();
-    }
-
-    public void btnSendOnAction(ActionEvent actionEvent) throws IOException {
-        dataOutputStream.writeUTF(txtField.getText().trim());
-        dataOutputStream.flush();
-        txtField.clear();
-    }
-
-    public  void  clear(){
-
-            try {
-                if (serverSocket!=null) {
-                    serverSocket.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
+            ClientHandler clientHandler = new ClientHandler(socket, clientHandlers);
+            clientHandlers.add(clientHandler);
+            clientHandler.start();
+        }
     }
 }

@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,17 +14,8 @@
             <Image url="@../assets/background.png" />
          </image>
       </ImageView>
-      <JFXButton buttonType="RAISED" layoutX="734.0" layoutY="491.0" onAction="#btnSendOnAction" prefHeight="45.0" prefWidth="138.0" style="-fx-background-color: #16A085;" text="Send">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </JFXButton>
-      <TextArea fx:id="txtArea" layoutX="79.0" layoutY="80.0" prefHeight="354.0" prefWidth="786.0" style="-fx-background-image: E:\GDSE\(02) Second Semester\INT\Course Work\Live-Chat Project\src\assets\background.png;" />
-      <TextField fx:id="txtField" layoutX="79.0" layoutY="491.0" prefHeight="45.0" prefWidth="641.0" />
-      <Label layoutX="38.0" layoutY="26.0" prefHeight="29.0" prefWidth="248.0" text="Name">
+      <TextArea fx:id="txtArea" editable="false" layoutX="79.0" layoutY="80.0" prefHeight="440.0" prefWidth="786.0" style="-fx-background-image: E:\GDSE\(02) Second Semester\INT\Course Work\Live-Chat Project\src\assets\background.png;" />
+      <Label layoutX="38.0" layoutY="26.0" prefHeight="29.0" prefWidth="248.0" text="Server">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>

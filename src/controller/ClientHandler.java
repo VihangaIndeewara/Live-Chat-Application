@@ -13,9 +13,10 @@ public class ClientHandler extends Thread {
     private DataInputStream dataInputStream;
     private String username;
 
-    public ClientHandler(Socket socket) {
+    public ClientHandler(Socket socket,ArrayList<ClientHandler>clientHandlers) {
         try {
             this.socket = socket;
+            this.clientHandlerArrayList=clientHandlers;
             dataOutputStream=new DataOutputStream(socket.getOutputStream());
             dataInputStream=new DataInputStream(socket.getInputStream());
             this.username=dataInputStream.readUTF();

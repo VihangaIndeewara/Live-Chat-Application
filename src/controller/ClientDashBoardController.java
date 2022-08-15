@@ -27,6 +27,9 @@ public class ClientDashBoardController extends Thread {
     String message= "";
 
     public void initialize(){
+        String userName = ClientLoginFormController.userName;
+        lblName.setText(userName);
+
         try {
             socket=new Socket("localhost",PORT);
             dataInputStream=new DataInputStream(socket.getInputStream());
@@ -40,7 +43,7 @@ public class ClientDashBoardController extends Thread {
 
     public void btnSendOnAction(ActionEvent actionEvent) throws IOException {
         message=txtField.getText();
-        dataOutputStream.writeUTF("username : " + txtField.getText().trim());
+        dataOutputStream.writeUTF(lblName.getText()+" : " + txtField.getText().trim());
         dataOutputStream.flush();
         txtField.clear();
     }
