@@ -25,7 +25,7 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </JFXButton>
-      <TextArea fx:id="txtArea" layoutX="79.0" layoutY="80.0" prefHeight="354.0" prefWidth="786.0" style="-fx-background-image: E:\GDSE\(02) Second Semester\INT\Course Work\Live-Chat Project\src\assets\background.png;" />
+      <TextArea fx:id="txtArea" editable="false" layoutX="79.0" layoutY="80.0" prefHeight="354.0" prefWidth="786.0" />
       <TextField fx:id="txtField" layoutX="79.0" layoutY="491.0" prefHeight="45.0" prefWidth="641.0" />
       <Label fx:id="lblName" layoutX="38.0" layoutY="26.0" prefHeight="29.0" prefWidth="248.0" text="Name">
          <font>
@@ -36,6 +36,9 @@
          <image>
             <Image url="@../assets/photo.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
    </children>
 </AnchorPane>

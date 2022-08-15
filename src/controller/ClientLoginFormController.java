@@ -18,7 +18,7 @@ public class ClientLoginFormController {
     public void btnLogInOnAction(ActionEvent actionEvent) throws IOException {
         if (txtUserName.getText().length()>0){
             userName =txtUserName.getText();
-            setUi("../view/FirstClientDashBoard");
+            setUi("../view/ClientDashBoard");
         }else {
             new Alert(Alert.AlertType.WARNING,"Please Enter User Name").show();
         }

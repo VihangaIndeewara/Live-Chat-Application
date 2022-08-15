@@ -1,27 +1,22 @@
 package controller;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 
 public class ClientHandler extends Thread {
     public static ArrayList<ClientHandler> clientHandlerArrayList= new ArrayList<>();
     private Socket socket;
-    private DataOutputStream dataOutputStream;
-    private DataInputStream dataInputStream;
+    private BufferedReader bufferedReader;
+    private PrintWriter printWriter;
     private String username;
 
     public ClientHandler(Socket socket,ArrayList<ClientHandler>clientHandlers) {
         try {
             this.socket = socket;
             this.clientHandlerArrayList=clientHandlers;
-            dataOutputStream=new DataOutputStream(socket.getOutputStream());
-            dataInputStream=new DataInputStream(socket.getInputStream());
-            this.username=dataInputStream.readUTF();
-            clientHandlerArrayList.add(this);
-            message("SERVER : "+ username + "added to the group");
+            this.bufferedReader= new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            this.printWriter=new PrintWriter(socket.getOutputStream(),true);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -31,52 +26,26 @@ public class ClientHandler extends Thread {
     @Override
     public void run() {
         try {
-                String clientMsg;
-                while ((clientMsg=dataInputStream.readUTF())!=null){
-                    if(clientMsg.equalsIgnoreCase("bye")) {
-                        break;
-                        for (ClientHandler c:clientHandlerArrayList) {
-                            System.out.println(c.dataInputStream.readUTF());
-                        }
-                    }
-
-
-
-                clientMsg=dataInputStream.readUTF();
-                message(clientMsg);
+            String clientMsg;
+            while ((clientMsg = bufferedReader.readLine()) != null) {
+                if (clientMsg.equalsIgnoreCase("bye")) {
+                    break;
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
-                close(socket,dataOutputStream,dataInputStream);
-            }
-
-    }
-
-
-
-    public void message(String msgToSend){
-        for (ClientHandler clientHandler:clientHandlerArrayList) {
-            try {
-                if (!clientHandler.username.equals(username)){
-                    clientHandler.dataOutputStream.writeUTF(msgToSend);
-                    clientHandler.dataOutputStream.flush();
+                for (ClientHandler c : clientHandlerArrayList) {
+                    c.printWriter.println(clientMsg);
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
             }
-
-        }
-    }
-
-    private void close(Socket socket, DataOutputStream dataOutputStream, DataInputStream dataInputStream){
-        try {
-            socket.close();
-            dataInputStream.close();
-            dataOutputStream.close();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                socket.close();
+                bufferedReader.close();
+                printWriter.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-
     }
 
 }
