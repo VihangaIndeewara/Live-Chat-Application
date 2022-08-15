@@ -148,6 +148,7 @@ public class ClientDashBoardController extends Thread {
     }
 
     public void photoOnMouseClickedOnAction(MouseEvent mouseEvent) {
+
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         chooser = new FileChooser();
         chooser.setTitle("Open Image");
