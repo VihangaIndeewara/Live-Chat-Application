@@ -1,17 +1,14 @@
 package controller;
 
-import com.sun.security.ntlm.Client;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -22,7 +19,6 @@ import javafx.stage.Stage;
 
 
 import java.io.*;
-import java.net.ServerSocket;
 import java.net.Socket;
 
 public class ClientDashBoardController extends Thread {
@@ -71,19 +67,19 @@ public class ClientDashBoardController extends Thread {
     public void run() {
         try {
             while (true) {
-                String massage = bufferedReader.readLine();
-                String[] tokens = massage.split(" ");
+                String message = bufferedReader.readLine();
+                String[] tokens = message.split(" ");
                 String command = tokens[0];
 
-                StringBuilder clientMassage = new StringBuilder();
+                StringBuilder clientMessage = new StringBuilder();
                 for (int i = 1; i < tokens.length; i++) {
-                    clientMassage.append(tokens[i] + " ");
+                    clientMessage.append(tokens[i] + " ");
                 }
 
-                String[] massageAr = massage.split(" ");
+                String[] messageAr = message.split(" ");
                 String string = "";
-                for (int i = 0; i < massageAr.length - 1; i++) {
-                    string += massageAr[i + 1] + " ";
+                for (int i = 0; i < messageAr.length - 1; i++) {
+                    string += messageAr[i + 1] + " ";
                 }
 
                 Text text = new Text(string);
@@ -102,24 +98,17 @@ public class ClientDashBoardController extends Thread {
                     ImageView imageView = new ImageView(image);
 
                     imageView.setFitWidth(150);
-                    imageView.setFitHeight(200);
+                    imageView.setFitHeight(150);
 
                     HBox hBox = new HBox(10);
                     hBox.setAlignment(Pos.BOTTOM_RIGHT);
 
-                    if (!command.equalsIgnoreCase(lblName.getText())) {
-                        vBox.setAlignment(Pos.TOP_LEFT);
-                        hBox.setAlignment(Pos.CENTER_LEFT);
+                    vBox.setAlignment(Pos.TOP_LEFT);
+                    hBox.setAlignment(Pos.CENTER_LEFT);
 
-                        Text text1 = new Text("  " + command + " :");
-                        hBox.getChildren().add(text1);
-                        hBox.getChildren().add(imageView);
-                    } else {
-                        hBox.setAlignment(Pos.BOTTOM_RIGHT);
-                        hBox.getChildren().add(imageView);
-                        Text text1 = new Text(": Me ");
-                        hBox.getChildren().add(text1);
-                    }
+                    Text text1 = new Text(command + " :");
+                    hBox.getChildren().add(text1);
+                    hBox.getChildren().add(imageView);
 
                     Platform.runLater(() -> vBox.getChildren().addAll(hBox));
 
@@ -133,21 +122,15 @@ public class ClientDashBoardController extends Thread {
                     }
 
                     tempTextFlow.getChildren().add(text);
-                    tempTextFlow.setMaxWidth(200);
+                    tempTextFlow.setMaxWidth(500);
 
                     TextFlow textFlow = new TextFlow(tempTextFlow);
                     HBox hBox = new HBox(12);
 
-                    if (!command.equalsIgnoreCase(lblName.getText() + ":")) {
-                        vBox.setAlignment(Pos.TOP_LEFT);
-                        hBox.setAlignment(Pos.CENTER_LEFT);
-                        hBox.getChildren().add(textFlow);
-                    } else {
-                        Text text1 = new Text(clientMassage + ": Me");
-                        TextFlow textFlow1 = new TextFlow(text1);
-                        hBox.setAlignment(Pos.BOTTOM_RIGHT);
-                        hBox.getChildren().add(textFlow1);
-                    }
+                    vBox.setAlignment(Pos.TOP_LEFT);
+                    hBox.setAlignment(Pos.CENTER_LEFT);
+                    hBox.getChildren().add(textFlow);
+
                     Platform.runLater(() -> vBox.getChildren().addAll(hBox));
                 }
             }
